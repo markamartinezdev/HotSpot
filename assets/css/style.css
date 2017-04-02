@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+#hs-mainBody {
+    width: 100%;
+    position: relative;
+    background: url("../img/citybg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#hs-mainbody-center {
+	margin:auto;
+    transform: translateY(50%);
+    width: 100%;
+    max-width: 600px;
+    text-align:center;
+}
+#hs-mainbody-center img{
+width:50%;
+margin: 10px 0;
+}
+#hs-mainBodySearch {
+    padding: 2em;
+    border-radius: 20px;
+    width: 100%;
+}
+#hs-mainbody-submit{
+	margin:10px 0;
+	padding: .5em 1em;
+	font-size:1.5em;
+	background-color: #0074FF;
+	color:#fff;
+}
