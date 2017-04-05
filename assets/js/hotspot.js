@@ -12,7 +12,7 @@ $('#hs-mainbody-submit').click(function() {
  $('#hs-mainbody-wrapper').addClass('slideOutUp');
  
     var resultsContainerMargin = $('header').height();
-    setTimeout($('#hs-app-container').toggle());
+    setTimeout($('#hs-app-container').toggle(), 1000);
         $('#hs-app-content-container').css('margin-top',resultsContainerMargin + 50 + 'px');
     //adds class to the landing page wrapper
     //added class slides out landing page
