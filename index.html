@@ -53,59 +53,40 @@
             <!-- need area for filter options -->
         </header>
         <div id="hs-app-content-container" class="container-fluid">
-            <h2>PLACES</h2>
-            <template id="tmpl-place-result">
+            <template id="hs-place-result">
                 <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="reslut">
+                    <div class="result">
                         <a href="#">
                             <img src="">
                             <img src="">
-                            <h3 class="place name">name</h3>
+                            <h2 class="place name">name</h2>
                             <div class="caption">
-                                <h2 class="pull-right rating">0.0</h2>
+                                <h3 class="pull-right rating">0.0</h3>
                                 <h3 class=place-type>type</h3>
                             </div>
                         </a>
                     </div>
                 </div>
             </template>
+            <template id="hs-Location-page">
             <div class="row">
-                <div class="col-md-8">
-                    <img class="img-responsive" src="">
+                <div  class="col-md-8">
+                    <img  class="img-responsive hs-Location-Image" src="">
                 </div>
                 <div class="col-md-4">
-                    <div class="description" <p>
+                    <div class="description"> <p>
                         </p>
                     </div>
-                    <h3 class="place-rating">0.0/10</h3>
-                    <div class="Address">
+                    <h3 class="hs-place-rating">0.0/10</h3>
                         <h3>Address</h3>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Social Media</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                        </ul>
+                 
+                    <div class="col-md-4">
+                        <a href=""><img src="" alt="facebook"></a>
+                        <a href=""><img src="" alt="twitter"></a>
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
             </template>
-            <template id="tmpl-location">
-                <li>Location</li>
-            </template>
-            <template id="tmpl-year">
-                <a href="#" class="list-group-item">Year 1</a>
-            </template>
-            <!-- this is where the main content of the app will be i was thinking of makeing template  -->
-        </div>
-    </div>
-    </section>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/js/hotspot.js"></script>
