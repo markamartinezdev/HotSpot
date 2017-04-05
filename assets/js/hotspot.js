@@ -61,7 +61,7 @@ function getTrending() {
         })
         .done(function(response) {
             console.log("success");
-            console.log(response);
+            console.log(response.response.venues);
         })
         .fail(function() {
             console.log("error");
