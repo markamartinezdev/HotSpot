@@ -25,7 +25,10 @@ $('#hs-mainbody-submit').click(function() {
    
 
 });
-
+var city;
+var lat;
+var lng;
+var ll;
 var resultLimit = 10;
 $('.hs-submit').click(getSearch);
 
@@ -36,36 +39,64 @@ function getSearch() {
     city = serchPerent.find('input').val()
         //set type in var
     console.log(city);
-    callFourSquar();
+    getCityLAndL();
 }
 //call maps api
 //get gio location of city
 //pass location to var
 //coll foursquar width location var
 
-function callFourSquar() {
+
+
+//function for getting value from serach input
+
+
+function getCityLAndL() {
     $.ajax({
             url: 'https://api.foursquare.com/v2/venues/search?v=20161016',
             medthod: 'GET',
             data: {
                 near: city,
-                limit: resultLimit,
                 client_id: 'I23VPE32IPM5CTJ0DLH0QD1AUGOMINAG5UVUHK11CZJDUUJC',
                 client_secret: 'DST5ED0CW1XQZN2GY4QD2JLOZY1W5EUSCFC3OFME1ECFLBLI'
             }
         })
         .done(function(response) {
-            //call populate function
-            populateResults(response);
-            console.log(response.response.venues.length);
+            console.log("success");
+            lat = response.response.geocode.feature.geometry.center.lat;
+            lng = response.response.geocode.feature.geometry.center.lng;
+            ll = lat + "," + lng;
+            getTrending();
         })
         .fail(function() {
             console.log("error");
-        })
-        .always(function() {
-            console.log("complete");
         });
+
 }
+
+// use lat & lng to search for trending locations
+function getTrending() {
+    $.ajax({
+            url: 'https://api.foursquare.com/v2/venues/trending?v=20161016',
+            medthod: 'GET',
+            data: {
+                ll: ll,
+                client_id: 'I23VPE32IPM5CTJ0DLH0QD1AUGOMINAG5UVUHK11CZJDUUJC',
+                client_secret: 'DST5ED0CW1XQZN2GY4QD2JLOZY1W5EUSCFC3OFME1ECFLBLI'
+            }
+        })
+        .done(function(response) {
+            console.log("success");
+            console.log(response.response.venues);
+        populateResults(response);
+        })
+        .fail(function() {
+            console.log("error");
+
+        });
+
+};
+
 
 //----------------------------------------------------Mark
 function populateResults(response) {
@@ -73,9 +104,10 @@ function populateResults(response) {
     $('#hs-app-content-container').empty();
     $('#hs-app-content-container').append('<div class"row" id="hs-results-Container"></div>');
     //loop thrue all items
-    for (var i = 0; i < response.response.venues.length; i++) {
+    for (var i = 0; i < resultLimit; i++) {
         //get amount of check ins 
-        var hereNow;
+        var here = response.response.venue[i].hereNow.count;
+        console.log(hereNow);
         //get photo 
         var photo;
         //get social id's
@@ -92,10 +124,10 @@ function populateResults(response) {
             rating = 'coldimage';
         }
         //append a div with each location info and check in rating
-        $('#hs-results-Container').append('result'+ i + '   <br>');
+        $('#hs-results-Container').append('here now'+ here + '   <br>');
     }
 
-}
+};
 
 //append a div with each location info and check in rating
 //when a location is selected 
