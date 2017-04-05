@@ -10,12 +10,13 @@ $('#hs-mainbody-submit').click(function() {
     event.preventDefault();
     //show the main app content
 
-    $('#hs-app-container').toggle();
+ 
     var resultsContainerMargin = $('header').height();
         $('#hs-app-content-container').css('margin-top',resultsContainerMargin + 50 + 'px');
     //adds class to the landing page wrapper
     //added class slides out landing page
     $('#hs-mainbody-wrapper').addClass('slideOutUp');
+       $('#hs-app-container').toggle();
 
 });
 
