@@ -11,10 +11,11 @@ $('#hs-mainbody-submit').click(function() {
     //show the main app content
  $('#hs-mainbody-wrapper').addClass('slideOutUp');
  
-    var resultsContainerMargin = $('header').height();
+    
     var show = setTimeout(toggleAppPage, 200);
     function toggleAppPage(){
         $('#hs-app-container').toggle();
+        var resultsContainerMargin = $('header').height();
         $('#hs-app-content-container').css('margin-top',resultsContainerMargin + 50 + 'px');
     }
         
