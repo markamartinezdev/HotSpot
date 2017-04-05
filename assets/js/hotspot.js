@@ -107,7 +107,7 @@ function populateResults(response) {
     for (var i = 0; i < resultLimit; i++) {
         //get amount of check ins 
         var here = response.response.venue[i].hereNow.count;
-        console.log(hereNow);
+        console.log(response);
         //get photo 
         var photo;
         //get social id's
