@@ -9,14 +9,15 @@ $('#hs-mainbody-wrapper').height(mainBody);
 $('#hs-mainbody-submit').click(function() {
     event.preventDefault();
     //show the main app content
-
+ $('#hs-mainbody-wrapper').addClass('slideOutUp');
  
     var resultsContainerMargin = $('header').height();
+    setTimeout($('#hs-app-container').toggle());
         $('#hs-app-content-container').css('margin-top',resultsContainerMargin + 50 + 'px');
     //adds class to the landing page wrapper
     //added class slides out landing page
-    $('#hs-mainbody-wrapper').addClass('slideOutUp');
-       $('#hs-app-container').toggle();
+   
+   
 
 });
 
