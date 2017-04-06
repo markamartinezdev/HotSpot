@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
 </head>
+
 <body>
     <div class="container animated" id="hs-mainbody-wrapper">
         <div id="hs-mainBody">
@@ -19,10 +21,10 @@
                     <div class="col-lg-12">
                         <div id="hs-mainbody-search-container" class="input-group">
                             <input id="hs-mainBodySearch" type="text" class="form-control" placeholder="Enter youre city and find something to do">
-                            <select id="option" class="selectpicker" name="cars">
-                                <option value="volvo">Restaurants</option>
-                                <option value="saab">Clubs</option>
-                                <option value="mercedes">Bars</option>
+                            <select id="hs-Type" class="selectpicker" name="catigories">
+                                <option value="Restaurants">Restaurants</option>
+                                <option value="Clubs">Clubs</option>
+                                <option value="Bars">Bars</option>
                             </select>
                             <span class="input-group-btn"><button id="hs-mainbody-submit"  class="btn btn-default hs-submit" type="button">SEARCH</button></span>
                         </div>
@@ -53,43 +55,47 @@
             <!-- need area for filter options -->
         </header>
         <div id="hs-app-content-container" class="container-fluid">
-            <template id="hs-place-result">
-                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div id="hs-results-container" class="container">
+            </div>
+            <template id="hs-place-results">
+                <div class="row">
+                </div>
+            </template>
+            <template id="hs-result">
+                <div class="col-md-3 result-container" venueId="">
                     <div class="result">
-                        <a href="#">
-                            <img src="">
-                            <img src="">
-                            <h2 class="place name">name</h2>
-                            <div class="caption">
-                                <h3 class="pull-right rating">0.0</h3>
-                                <h3 class=place-type>type</h3>
-                            </div>
-                        </a>
+                        <img alt="">
+                        <img alt="">
+                        <h2 id="name">name</h2>
+                        <p id="type">type</p>
+                        <p id="rating">rating</p>
                     </div>
                 </div>
             </template>
             <template id="hs-Location-page">
-            <div class="row">
-                <div  class="col-md-8">
-                    <img  class="img-responsive hs-Location-Image" src="">
-                </div>
-                <div class="col-md-4">
-                    <div class="description"> <p>
-                        </p>
+                <div class="row">
+                    <div class="col-md-8">
+                        <img class="img-responsive hs-Location-Image" src="">
                     </div>
-                    <h3 class="hs-place-rating">0.0/10</h3>
-                        <h3>Address</h3>
-                 
                     <div class="col-md-4">
-                        <a href=""><img src="" alt="facebook"></a>
-                        <a href=""><img src="" alt="twitter"></a>
+                        <div class="description">
+                            <p>
+                            </p>
+                        </div>
+                        <h3 class="hs-place-rating">0.0/10</h3>
+                        <h3>Address</h3>
+                        <div class="col-md-4">
+                            <a href=""><img src="" alt="facebook"></a>
+                            <a href=""><img src="" alt="twitter"></a>
+                        </div>
                     </div>
                 </div>
-            </div>
             </template>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="assets/js/hotspot.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+            <script type="text/javascript" src="assets/js/hotspot.js"></script>
 </body>
+
 </html>

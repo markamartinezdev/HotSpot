@@ -73,7 +73,7 @@ body {
 /*********************** STYLES FOR APP CONTAINER **************************/
 
 #hs-app-container {
-    background-color: #000;
+    background-color:;
     display: none;
 }
 
@@ -85,6 +85,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 10;
 }
 
 #hs-nav-logo {
@@ -104,4 +105,15 @@ header {
     border-radius: 0 0 30px 0;
     background-color: rgb(239, 0, 0);
     color: #fff;
+}
+
+.result-container{
+    padding:10px;
+
+}
+
+.result{
+    background-color: #eee;
+    border-radius: 20px;
+    padding:5px;
 }
