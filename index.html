@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div id="hs-mainbody-search-container" class="input-group">
-                            <input id="hs-mainBodySearch" type="text" class="form-control animated rubberBand" placeholder="Enter youre city and find something to do">
+                            <input id="autocomplete" type="text" class="form-control animated rubberBand hs-main-search" placeholder="Enter youre city and find something to do">
                             <span class="input-group-btn animated rubberBand"><button id="hs-mainbody-submit"  class="btn btn-default hs-submit" type="button">SEARCH</button></span>
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="input-group">
-                                    <input id="hs-app-container-Search" type="text" class="form-control" placeholder="SEARCH CITY">
+                                    <input id="autocomplete" type="text" class="form-control hs-app-search" placeholder="SEARCH CITY">
                                     <span class="input-group-btn"> <button id="hs-app-container-submit" class="btn btn-default hs-submit" type="button">SEARCH</button> </span>
                                 </div>
                             </div>

@@ -1,7 +1,9 @@
 //css for landing page
 //gets window height
 var mainBody = window.innerHeight;
+//gets background
 
+//sets background 
 //sets height of main body wrapper
 $('#hs-mainbody-wrapper').height(mainBody);
 
@@ -10,8 +12,6 @@ $('#hs-mainbody-submit').click(function() {
     event.preventDefault();
     //show the main app content
     $('#hs-mainbody-wrapper').addClass('slideOutUp');
-
-
     var show = setTimeout(toggleAppPage, 1200);
 
     function toggleAppPage() {
@@ -19,13 +19,11 @@ $('#hs-mainbody-submit').click(function() {
         var resultsContainerMargin = $('header').height();
         $('#hs-app-content-container').css('margin-top', resultsContainerMargin + 50 + 'px');
     }
-
     //adds class to the landing page wrapper
     //added class slides out landing page
-
-
-
 });
+var input = document.getElementById('autocomplete');
+var autocomplete = new google.maps.places.Autocomplete(input);
 var venueId;
 var city;
 var lat;
@@ -90,6 +88,9 @@ function populateResults(response) {
     appResultsTemp = $(appResultsHtml);
     console.log(appResultsTemp);
     $('#hs-results-container').empty().append(appResultsTemp);
+    if(results.length == 0){
+        $('#hs-results-container').empty().append("<h1>Sorry, there's nothing going on in this area.</h1> ")
+    }else{
     //loop thrue all items
     for (i = 0; i < resultLimit; i++) {
 
@@ -125,6 +126,7 @@ function populateResults(response) {
         appResultTemp.find('#type').text(cat);
     }
     $('#hs-results-container').append('<button id="load-more" class="btn">load more results</button>');
+    }
 }
 //get photo for venue
 function getphotos() {
@@ -145,6 +147,13 @@ function getphotos() {
     });
 
 }
+$('body').on('click', '.result-container', function() {
+
+    venueId = $(this).attr('venueId');
+    console.log(venueId);
+    venuePage();
+
+});
 
 function venuePage(response) {
     var venuesObj = response.response.venues;
@@ -185,6 +194,7 @@ function venuePage(response) {
     venueResultTemp.find('#rating').text(rating);
 
 }
+
 
 //append a div with each location info and check in rating
 //when a location is selected 

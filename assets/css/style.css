@@ -37,7 +37,7 @@ body {
 #hs-mainbody-search-container {
     margin: 2em 0;
 }
-#hs-mainBodySearch {
+.hs-main-search {
     padding: 2em;
     border-radius: 30px 0 0 5px;
     background-color: rgba(255, 255, 255, .9);
@@ -79,7 +79,7 @@ header {
     width: 100%;
     max-width: 100px;
 }
-#hs-app-container-Search {
+.hs-app-search {
     padding: 1.7em;
     border-radius: 30px 0 0 5px;
     background-color: #fff;
