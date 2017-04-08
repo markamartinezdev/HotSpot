@@ -8,6 +8,8 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
 </head>
@@ -21,11 +23,6 @@
                     <div class="col-lg-12">
                         <div id="hs-mainbody-search-container" class="input-group">
                             <input id="hs-mainBodySearch" type="text" class="form-control" placeholder="Enter youre city and find something to do">
-                            <select id="hs-Type" class="selectpicker" name="catigories">
-                                <option value="Restaurants">Restaurants</option>
-                                <option value="Clubs">Clubs</option>
-                                <option value="Bars">Bars</option>
-                            </select>
                             <span class="input-group-btn"><button id="hs-mainbody-submit"  class="btn btn-default hs-submit" type="button">SEARCH</button></span>
                         </div>
                     </div>
@@ -64,8 +61,8 @@
             <template id="hs-result">
                 <div class="col-md-3 result-container" venueId="">
                     <div class="result">
-                        <img alt="">
-                        <img alt="">
+                        <img id="hs-place-image" class="img-responsive" alt="">
+                        <img id="hs-place-rating" alt="">
                         <h2 id="name">name</h2>
                         <p id="type">type</p>
                         <p id="rating">rating</p>
