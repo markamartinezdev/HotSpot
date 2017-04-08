@@ -113,6 +113,9 @@ header {
     right: 15px;
     opacity: .9;
 }
+#load-more{
+    background-color: red;
+}
 /*********************************media qurys*********/
 
 @media (min-width: 991px) {
