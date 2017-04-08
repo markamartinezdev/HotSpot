@@ -116,6 +116,14 @@ header {
 #load-more{
     background-color: red;
 }
+
+/***********************************details page***************/
+
+#hs-detailsimg{
+
+    border-radius: 30px;
+
+}
 /*********************************media qurys*********/
 
 @media (min-width: 991px) {
