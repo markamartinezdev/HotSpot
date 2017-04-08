@@ -88,44 +88,44 @@ function populateResults(response) {
     appResultsTemp = $(appResultsHtml);
     console.log(appResultsTemp);
     $('#hs-results-container').empty().append(appResultsTemp);
-    if(results.length == 0){
+    if (results.length == 0) {
         $('#hs-results-container').empty().append("<h1>Sorry, there's nothing going on in this area.</h1> ")
-    }else{
-    //loop thrue all items
-    for (i = 0; i < resultLimit; i++) {
+    } else {
+        //loop thrue all items
+        for (i = 0; i < resultLimit; i++) {
 
-        var appResultHtml = $('#hs-result').html();
-        var appResultTemp = $(appResultHtml);
-        //get amount of check ins 
-        var here = results[i].hereNow.count;
-        venueId = results[i].id;
-        var name = results[i].name;
-        //get social id's
-        var twitter;
-        var facebook;
-        //get location
-        var address;
-        //get type of location
-        var cat = results[i].categories[0].name;
-        //set fire or ice
-        if (here > 0) {
-            rating = 'assets/img/fire.png';
-        } else {
-            rating = 'assets/img/ice.png';
+            var appResultHtml = $('#hs-result').html();
+            var appResultTemp = $(appResultHtml);
+            //get amount of check ins 
+            var here = results[i].hereNow.count;
+            venueId = results[i].id;
+            var name = results[i].name;
+            //get social id's
+            var twitter;
+            var facebook;
+            //get location
+            var address;
+            //get type of location
+            var cat = results[i].categories[0].name;
+            //set fire or ice
+            if (here > 0) {
+                rating = 'assets/img/fire.png';
+            } else {
+                rating = 'assets/img/ice.png';
+            }
+            //append a div with each location info and check in rating
+            getphotos();
+            //append a div with each location info and check in rating
+            console.log(appResultTemp);
+            appResultsTemp.append(appResultTemp);
+            appResultTemp.addClass('slideInUp ');
+            appResultTemp.attr('venueId', venueId);
+            appResultTemp.find('#hs-place-image').attr('src', photoUrl);
+            appResultTemp.find('#hs-place-rating').attr('src', rating);
+            appResultTemp.find('#name').text(name);
+            appResultTemp.find('#type').text(cat);
         }
-        //append a div with each location info and check in rating
-        getphotos();
-        //append a div with each location info and check in rating
-        console.log(appResultTemp);
-        appResultsTemp.append(appResultTemp);
-        appResultTemp.addClass('slideInUp ');
-        appResultTemp.attr('venueId', venueId);
-        appResultTemp.find('#hs-place-image').attr('src', photoUrl);
-        appResultTemp.find('#hs-place-rating').attr('src', rating);
-        appResultTemp.find('#name').text(name);
-        appResultTemp.find('#type').text(cat);
-    }
-    $('#hs-results-container').append('<button id="load-more" class="btn">Load More Results</button>');
+        $('#hs-results-container').append('<button id="load-more" class="btn">Load More Results</button>');
     }
 }
 //get photo for venue
@@ -139,10 +139,17 @@ function getphotos() {
         },
         async: false
     }).done(function(response) {
-        var pre = response.response.photos.items[0].prefix;
-        var suf = response.response.photos.items[0].suffix;
-        var size = '500x500';
-        photoUrl = pre + size + suf;
+        if (response.response.photos.items.length === 0) {
+            photoUrl = 'http://placehold.it/500x500';
+        } else {
+
+            var pre = response.response.photos.items[0].prefix;
+            var suf = response.response.photos.items[0].suffix;
+            var size = '500x500';
+            photoUrl = pre + size + suf;
+
+        }
+
         console.log(photoUrl);
     });
 
@@ -151,12 +158,32 @@ $('body').on('click', '.result-container', function() {
 
     venueId = $(this).attr('venueId');
     console.log(venueId);
-    venuePage();
+    getVenue();
 
 });
 
+function getVenue() {
+
+    $.ajax({
+            url: 'https://api.foursquare.com/v2/venues/' + venueId + '?v=20170404',
+            medthod: 'GET',
+            data: {
+                client_id: 'I23VPE32IPM5CTJ0DLH0QD1AUGOMINAG5UVUHK11CZJDUUJC',
+                client_secret: 'DST5ED0CW1XQZN2GY4QD2JLOZY1W5EUSCFC3OFME1ECFLBLI'
+
+            }
+        })
+        .done(function(response) {
+            venuePage(response);
+        })
+        .fail(function() {
+            console.log('error');
+        });
+
+}
+
 function venuePage(response) {
-    var venuesObj = response.response.venues;
+    var venuesObj = response.response.venue;
 
     var appResultsHtml = $('#hs-place-results').html();
     appResultsTemp = $(appResultsHtml);
@@ -168,16 +195,16 @@ function venuePage(response) {
     var venueResult = $('#hs-Location-page').html();
     var venueResultTemp = $(venueResult);
     //get amount of check ins 
-    var here = venuesObj[i].hereNow.count;
-    var name = venuesObj[i].name;
+    var here = venuesObj.hereNow.count;
+    var name = venuesObj.name;
     //get social id's
     var twitter;
     var facebook;
     //get location
     var address;
     //get type of location
-    var cat = venuesObj[i].categories[0].name;
-    var venueId = venuesObj[i].id;
+    var cat = venuesObj.categories[0].name;
+    var venueId = venuesObj.id;
     //set fire or ice
     if (here > 0) {
         rating = 'assets/images/fire.png';
@@ -185,13 +212,14 @@ function venuePage(response) {
         rating = 'assets/images/ice.png';
     }
     //append a div with each location info and check in rating
-
-    venueResultsTemp.append(venueResultTemp);
-    venueResultTemp.addClass('slideInUp');
-    venueResultsTemp.attr('venueId', venueId);
-    venueResultTemp.find('#name').text(name);
-    venueResultTemp.find('#type').text(cat);
-    venueResultTemp.find('#rating').text(rating);
+    getphotos();
+    appResultsTemp.append(venueResultTemp);
+    appResultsTemp.addClass('slideInUp');
+    appResultTemp.find('#hs-detailsimg').attr('src', photoUrl);
+    appResultsTemp.find('#name').text(name);
+    appResultsTemp.find('#type').text(cat);
+    appResultTemp.find('#description').text();
+    appResultsTemp.find('#hs-place-rating').text(rating);
 
 }
 
