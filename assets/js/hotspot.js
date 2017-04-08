@@ -125,7 +125,7 @@ function populateResults(response) {
         appResultTemp.find('#name').text(name);
         appResultTemp.find('#type').text(cat);
     }
-    $('#hs-results-container').append('<button id="load-more" class="btn">load more results</button>');
+    $('#hs-results-container').append('<button id="load-more" class="btn">Load More Results</button>');
     }
 }
 //get photo for venue
