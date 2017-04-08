@@ -201,7 +201,7 @@ function venuePage(response) {
     var twitter;
     var facebook;
     //get location
-    var address;
+    var address = venuesObj.location.address + venuesObj.location.cc + venuesObj.location.city + venuesObj.location.country ;
     //get type of location
     var cat = venuesObj.categories[0].name;
     var venueId = venuesObj.id;
@@ -214,12 +214,12 @@ function venuePage(response) {
     //append a div with each location info and check in rating
     getphotos();
     appResultsTemp.append(venueResultTemp);
-    appResultsTemp.addClass('slideInUp');
-    appResultTemp.find('#hs-detailsimg').attr('src', photoUrl);
-    appResultsTemp.find('#name').text(name);
-    appResultsTemp.find('#type').text(cat);
-    appResultTemp.find('#description').text();
-    appResultsTemp.find('#hs-place-rating').text(rating);
+    venueResultTemp.addClass('slideInUp');
+    venueResultTemp.find('#hs-detailsimg').attr('src', photoUrl);
+    venueResultTemp.find('#detail-name').text(name);
+    venueResultTemp.find('#type').text(cat);
+    venueResultTemp.find('#hs-address').text(address);
+    venueResultTemp.find('#hs-place-rating').text(rating);
 
 }
 
@@ -228,3 +228,4 @@ function venuePage(response) {
 //when a location is selected 
 //empty app content container div
 //append divs to display  info on location page
+
