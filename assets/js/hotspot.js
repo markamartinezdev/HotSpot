@@ -12,7 +12,7 @@ $('#hs-mainbody-submit').click(function() {
     $('#hs-mainbody-wrapper').addClass('slideOutUp');
 
 
-    var show = setTimeout(toggleAppPage, 1500);
+    var show = setTimeout(toggleAppPage, 1200);
 
     function toggleAppPage() {
         $('#hs-app-container').toggle();
@@ -26,11 +26,13 @@ $('#hs-mainbody-submit').click(function() {
 
 
 });
+var venueId;
 var city;
 var lat;
 var lng;
 var ll;
 var resultLimit = 10;
+
 $('.hs-submit').click(getSearch);
 
 function getSearch() {
@@ -39,27 +41,18 @@ function getSearch() {
     //getting the value from search box
     city = serchPerent.find('input').val();
     type = 'city';
-        //set type in var
+    //set type in var
     console.log(city);
     getFourData();
 }
-//call maps api
-//get gio location of city
-//pass location to var
-//coll foursquar width location var
-
-
-
 //function for getting value from serach input
-
-
 function getFourData() {
     $.ajax({
             url: 'https://api.foursquare.com/v2/venues/search?v=20161016',
             medthod: 'GET',
             data: {
                 near: city,
-                radius: '3000',
+                radius: '10000',
                 limit: '100',
                 client_id: 'I23VPE32IPM5CTJ0DLH0QD1AUGOMINAG5UVUHK11CZJDUUJC',
                 client_secret: 'DST5ED0CW1XQZN2GY4QD2JLOZY1W5EUSCFC3OFME1ECFLBLI'
@@ -81,9 +74,9 @@ function populateResults(response) {
     var venuesObj = response.response.venues;
     var filteredVenues = _.reject(venuesObj, function(venue) {
         return venue.categories.some(function(category) {
-            if(category.name.toLowerCase().indexOf('city') >= 0 || category.name.toLowerCase().indexOf('bus') >= 0 || category.name.toLowerCase().indexOf('space') >= 0 || category.name.toLowerCase().indexOf('neighborhood') >= 0 || category.name.toLowerCase().indexOf('station') >= 0 || category.name.toLowerCase().indexOf('pharmacy') >= 0 || category.name.toLowerCase().indexOf('store') >= 0 || category.name.toLowerCase().indexOf('bank') >= 0){
-                return true; 
-            }else{
+            if (category.name.toLowerCase().indexOf('city') >= 0 || category.name.toLowerCase().indexOf('bus') >= 0 || category.name.toLowerCase().indexOf('space') >= 0 || category.name.toLowerCase().indexOf('neighborhood') >= 0 || category.name.toLowerCase().indexOf('station') >= 0 || category.name.toLowerCase().indexOf('pharmacy') >= 0 || category.name.toLowerCase().indexOf('store') >= 0 || category.name.toLowerCase().indexOf('bank') >= 0) {
+                return true;
+            } else {
                 return false;
             }
 
@@ -104,9 +97,7 @@ function populateResults(response) {
         var appResultTemp = $(appResultHtml);
         //get amount of check ins 
         var here = results[i].hereNow.count;
-        //get photo 
         venueId = results[i].id;
-        var photo = getphotos;
         var name = results[i].name;
         //get social id's
         var twitter;
@@ -117,30 +108,26 @@ function populateResults(response) {
         var cat = results[i].categories[0].name;
         //set fire or ice
         if (here > 0) {
-            rating = 'hotimage';
+            rating = 'assets/img/fire.png';
         } else {
-            rating = 'coldimage';
+            rating = 'assets/img/ice.png';
         }
-
         //append a div with each location info and check in rating
         getphotos();
-
+        //append a div with each location info and check in rating
         console.log(appResultTemp);
         appResultsTemp.append(appResultTemp);
         appResultTemp.addClass('slideInUp ');
         appResultTemp.attr('venueId', venueId);
         appResultTemp.find('#hs-place-image').attr('src', photoUrl);
+        appResultTemp.find('#hs-place-rating').attr('src', rating);
         appResultTemp.find('#name').text(name);
         appResultTemp.find('#type').text(cat);
-        appResultTemp.find('#rating').text(rating);
-
     }
-
     $('#hs-results-container').append('<button id="load-more" class="btn">load more results</button>');
 }
-
+//get photo for venue
 function getphotos() {
-
     $.ajax({
         url: 'https://api.foursquare.com/v2/venues/' + venueId + '/photos?v=20170404',
         medthod: 'GET',
@@ -158,6 +145,47 @@ function getphotos() {
     });
 
 }
+
+function venuePage(response) {
+    var venuesObj = response.response.venues;
+
+    var appResultsHtml = $('#hs-place-results').html();
+    appResultsTemp = $(appResultsHtml);
+
+    $('#hs-results-container').empty().append(appResultsTemp);
+    //loop thrue all items
+
+
+    var venueResult = $('#hs-Location-page').html();
+    var venueResultTemp = $(venueResult);
+    //get amount of check ins 
+    var here = venuesObj[i].hereNow.count;
+    var name = venuesObj[i].name;
+    //get social id's
+    var twitter;
+    var facebook;
+    //get location
+    var address;
+    //get type of location
+    var cat = venuesObj[i].categories[0].name;
+    var venueId = venuesObj[i].id;
+    //set fire or ice
+    if (here > 0) {
+        rating = 'assets/images/fire.png';
+    } else {
+        rating = 'assets/images/ice.png';
+    }
+    //append a div with each location info and check in rating
+
+    venueResultsTemp.append(venueResultTemp);
+    venueResultTemp.addClass('slideInUp');
+    venueResultsTemp.attr('venueId', venueId);
+    venueResultTemp.find('#name').text(name);
+    venueResultTemp.find('#type').text(cat);
+    venueResultTemp.find('#rating').text(rating);
+
+}
+
 //append a div with each location info and check in rating
 //when a location is selected 
 //empty app content container div

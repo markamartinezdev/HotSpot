@@ -6,6 +6,8 @@ body {
     position: relative;
     background-image: url("../img/old_moon.png");
 }
+
+
 /****************************** STYLES FOR LANDING PAGE *************************/
 #hs-mainbody-wrapper {
     position: absolute;
@@ -93,11 +95,37 @@ header {
     padding:10px;
 }
 .result{
-    background-color:rgba(27, 122, 207, 0.4);
+    background-color:rgba(0, 166, 255, 0.13);
     border-radius: 20px;
     padding:5px;
     text-align: center;
+    position: relative;
 }
 .hs-result-Image{
     border-radius: 20px 20px 0 0;
+    width:100%;
+}
+.hs-rating{
+    width: 100%;
+    max-width: 50px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    opacity: .9;
+}
+/*********************************media qurys*********/
+
+@media (min-width: 991px) {
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
 }
